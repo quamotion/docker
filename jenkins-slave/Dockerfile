@@ -13,6 +13,7 @@ RUN curl https://packages.microsoft.com/config/ubuntu/14.04/prod.list | tee /etc
 RUN apt-get install -y apt-transport-https
 RUN apt-get update
 RUN apt-get install -y powershell
+RUN powershell -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion 0.70.4  -Force'
 
 # Delete all the apt list files since they're big and get stale quickly
 RUN rm -rf /var/lib/apt/lists/*
