@@ -5,3 +5,7 @@ services:
 
 script:
   - docker build -t quamotion/jenkins-slave jenkins-slave
+
+after_success:
+  - docker login -u="$DOCKER_USER" -p="$DOCKER_PASSW"
+  - docker push quamotion/jenkins-slave
