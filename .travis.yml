@@ -1,0 +1,7 @@
+sudo: required
+
+services:
+  - docker
+
+build:
+  - docker build -t quamotion/jenkins-slave jenkins-slave
