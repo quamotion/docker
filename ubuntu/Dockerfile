@@ -1,6 +1,4 @@
-FROM jenkinsci/jnlp-slave
-
-USER root
+FROM ubuntu/16.04
 
 # Install Python
 RUN apt-get update
@@ -16,5 +14,3 @@ RUN apt-get install -y powershell
 
 # Delete all the apt list files since they're big and get stale quickly
 RUN rm -rf /var/lib/apt/lists/*
-
-USER jenkins
