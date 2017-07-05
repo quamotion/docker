@@ -4,8 +4,8 @@ services:
   - docker
 
 script:
-  - docker build -t quamotion/jenkins-slave jenkins-slave
+  - docker build -t quamotion/jenkins-slave jenkins-slave:$TRAVIS_BUILD_NUMBER
 
 after_success:
   - docker login -u="$DOCKER_USER" -p="$DOCKER_PASSW"
-  - docker push quamotion/jenkins-slave
+  - docker push quamotion/jenkins-slave:$TRAVIS_BUILD_NUMBER
