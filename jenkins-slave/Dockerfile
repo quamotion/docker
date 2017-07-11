@@ -5,6 +5,9 @@ USER root
 # Install Python
 RUN apt-get update
 RUN apt-get install -y python3 python3-pip
+
+# See https://cryptography.io/en/latest/installation/
+RUN apt-get install build-essential libssl-dev libffi-dev python3-dev
 RUN pip3 install selenium quamotion adal
 
 # Install PowerShell
