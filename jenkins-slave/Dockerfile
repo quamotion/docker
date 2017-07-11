@@ -5,7 +5,7 @@ USER root
 # Install Python
 RUN apt-get update
 RUN apt-get install -y python3 python3-pip
-RUN pip3 install selenium quamotion
+RUN pip3 install selenium quamotion adal
 
 # Install PowerShell
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
