@@ -1,20 +1,20 @@
 FROM buildpack-deps:xenial-scm
 
 # Install Python
-RUN apt-get update
-RUN apt-get install -y python3 python3-pip
-RUN pip3 install --upgrade pip
-RUN pip3 install selenium quamotion
+RUN apt-get update \
+&& apt-get install -y python3 python3-pip \
+&& pip3 install --upgrade pip \
+&& pip3 install selenium quamotion \
 
 # Install PowerShell
-RUN apt-get install -y curl
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-RUN curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list
-RUN apt-get install -y apt-transport-https
-RUN apt-get update
-RUN apt-get install -y powershell
-RUN pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion 0.78  -Force'
+&& apt-get install -y curl \
+&& curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+&& curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list \
+&& apt-get install -y apt-transport-https \
+&& apt-get update \
+&& apt-get install -y powershell \
+&& pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion 0.78  -Force' \
 
 # Delete all the apt list files since they're big and get stale quickly
-RUN rm -rf /var/lib/apt/lists/*
+&& rm -rf /var/lib/apt/lists/*
 
