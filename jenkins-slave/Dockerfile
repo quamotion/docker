@@ -1,4 +1,4 @@
-FROM jenkinsci/jnlp-slave
+FROM jenkinsci/jnlp-slave:3.10-1
 
 USER root
 
@@ -15,7 +15,7 @@ RUN apt-get update \
 
 # Install PowerShell
 && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-&& curl https://packages.microsoft.com/config/ubuntu/14.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list \
+&& sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/microsoft.list' \
 && apt-get install -y apt-transport-https \
 && apt-get update \
 && apt-get install -y powershell \
