@@ -5,6 +5,7 @@ USER root
 # Install Python
 RUN apt-get update
 RUN apt-get install -y python3 python3-pip
+RUN pip3 install --upgrade pip
 
 # See https://cryptography.io/en/latest/installation/
 RUN apt-get install -y build-essential libssl-dev libffi-dev python3-dev
@@ -16,7 +17,7 @@ RUN curl https://packages.microsoft.com/config/ubuntu/14.04/prod.list | tee /etc
 RUN apt-get install -y apt-transport-https
 RUN apt-get update
 RUN apt-get install -y powershell
-RUN powershell -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion 0.70.4  -Force'
+RUN pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion 0.78  -Force'
 
 # Delete all the apt list files since they're big and get stale quickly
 RUN rm -rf /var/lib/apt/lists/*
