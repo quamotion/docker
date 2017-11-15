@@ -5,11 +5,13 @@ services:
 
 script:
   - docker build -t quamotion/jenkins-slave:$TRAVIS_BUILD_NUMBER jenkins-slave
+  - docker build -t quamotion/gitlab-runner:$TRAVIS_BUILD_NUMBER gitlab-runner
   - docker build -t quamotion/ubuntu:$TRAVIS_BUILD_NUMBER ubuntu
   - docker build -t quamotion/webdriver:$TRAVIS_BUILD_NUMBER webdriver
 
 after_success:
   - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
   - docker push quamotion/jenkins-slave:$TRAVIS_BUILD_NUMBER
+  - docker push quamotion/gitlab-runner:$TRAVIS_BUILD_NUMBER
   - docker push quamotion/ubuntu:$TRAVIS_BUILD_NUMBER
   - docker push quamotion/webdriver:$TRAVIS_BUILD_NUMBER
