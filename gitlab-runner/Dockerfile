@@ -19,5 +19,8 @@ RUN apt-get update \
 && apt-get install -y powershell \
 && pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion 0.78  -Force' \
 
+# Utilities we use
+&& apt-get install unzip \
+
 # Delete all the apt list files since they're big and get stale quickly
 && rm -rf /var/lib/apt/lists/*
