@@ -6,6 +6,7 @@ RUN apt-get update \
 && pip3 --version \
 && pip3 install --upgrade pip \
 && pip3 install --upgrade setuptools \
+&& pip3 install --upgrade pytest \
 
 # See https://cryptography.io/en/latest/installation/
 && apt-get install -y build-essential libssl-dev libffi-dev python3-dev \
