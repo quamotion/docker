@@ -15,6 +15,17 @@ RUN apt-get update \
 && apt-get install -y powershell \
 && pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion 0.78  -Force' \
 
+# Install OpenSSH
+&& apt-get install -y openssh-server \
+&& mkdir /var/run/sshd \
+&& echo 'root:screencast' | chpasswd \
+&& sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
+
+# SSH login fix. Otherwise user is kicked off after login
+&& sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
+
 # Delete all the apt list files since they're big and get stale quickly
 && rm -rf /var/lib/apt/lists/*
 
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
