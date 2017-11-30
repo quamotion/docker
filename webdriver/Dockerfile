@@ -8,9 +8,9 @@ RUN apt-get update \
 # Delete all the apt list files since they're big and get stale quickly
 && rm -rf /var/lib/apt/lists/*
 
-RUN wget -nv -nc http://cdn.quamotion.mobi/download/quamotion-webdriver.0.80.26.ubuntu.16.04-x64.tar.gz \
-&& tar -xvzf quamotion-webdriver.0.80.26.ubuntu.16.04-x64.tar.gz \
-&& rm quamotion-webdriver.0.80.26.ubuntu.16.04-x64.tar.gz
+RUN wget -nv -nc http://cdn.quamotion.mobi/download/quamotion-webdriver.0.80.29.ubuntu.16.04-x64.tar.gz \
+&& tar -xvzf quamotion-webdriver.0.80.29.ubuntu.16.04-x64.tar.gz \
+&& rm quamotion-webdriver.0.80.29.ubuntu.16.04-x64.tar.gz
 
 RUN mkdir /var/lib/quamotion \
 && mkdir /var/log/quamotion \
