@@ -3,7 +3,7 @@ FROM ubuntu:xenial
 WORKDIR /app
 
 RUN apt-get update \
-&& apt-get install -y libunwind8 libicu55 libc++-dev zlib1g wget libcurl3 libgdiplus \
+&& apt-get install -y libunwind8 libicu55 libc++-dev zlib1g wget libcurl3 libgdiplus libc6-dev \
 
 # Delete all the apt list files since they're big and get stale quickly
 && rm -rf /var/lib/apt/lists/*
