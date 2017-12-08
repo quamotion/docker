@@ -15,6 +15,9 @@ RUN apt-get update \
 && apt-get install -y powershell \
 && pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion 0.79.0  -Force' \
 
+# Install Maven
+&& apt-get install -y maven openjdk-8-jdk-headless \
+
 # Install OpenSSH
 && apt-get install -y openssh-server \
 && mkdir /var/run/sshd \
@@ -23,6 +26,9 @@ RUN apt-get update \
 
 # SSH login fix. Otherwise user is kicked off after login
 && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
+
+# Install unzip
+&& apt-get install -y unzip \
 
 # Delete all the apt list files since they're big and get stale quickly
 && rm -rf /var/lib/apt/lists/*
