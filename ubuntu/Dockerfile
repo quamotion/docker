@@ -27,8 +27,8 @@ RUN apt-get update \
 # SSH login fix. Otherwise user is kicked off after login
 && sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd \
 
-# Install unzip
-&& apt-get install -y unzip \
+# Install zip and unzip
+&& apt-get install -y zip unzip \
 
 # Delete all the apt list files since they're big and get stale quickly
 && rm -rf /var/lib/apt/lists/*
