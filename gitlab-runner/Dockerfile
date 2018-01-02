@@ -19,6 +19,7 @@ RUN apt-get update \
 && apt-get update \
 && apt-get install -y powershell \
 && pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion 0.78  -Force' \
+&& pwsh -command 'Install-Module -Name Pester -Force' \
 
 # Utilities we use
 && apt-get install unzip \
