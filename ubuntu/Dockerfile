@@ -14,6 +14,7 @@ RUN apt-get update \
 && apt-get update \
 && apt-get install -y powershell \
 && pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion 0.79.0  -Force' \
+&& pwsh -command 'Install-Module -Name Pester -Force' \
 
 # Install Maven
 && apt-get install -y maven openjdk-8-jdk-headless \
