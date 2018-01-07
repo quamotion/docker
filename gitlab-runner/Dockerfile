@@ -18,7 +18,7 @@ RUN apt-get update \
 && apt-get install -y apt-transport-https \
 && apt-get update \
 && apt-get install -y powershell \
-&& pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion 0.78  -Force' \
+&& pwsh -command 'Install-Module -Name Quamotion.PowerShell -Force' \
 && pwsh -command 'Install-Module -Name Pester -Force' \
 
 # Utilities we use
