@@ -7,10 +7,13 @@ script:
   - docker build -t quamotion/gitlab-runner:$TRAVIS_BUILD_NUMBER gitlab-runner
   - docker build -t quamotion/ubuntu:$TRAVIS_BUILD_NUMBER ubuntu
   - docker build -t quamotion/webdriver:$TRAVIS_BUILD_NUMBER webdriver
-  - docker run --net host -d --name webdriver quamotion/webdriver:33
   
+  - echo Starting webdriver to determine the version
+  - docker run --net host -d --name webdriver quamotion/webdriver:$TRAVIS_BUILD_NUMBER
+  - while ! nc -z localhost 17894; do sleep 1; echo -n '.'; done
   - quamotion_version=`curl localhost:17894/wd/hub/status | jq .value.build.fileVersion -r | sed 's/\.[^.]*$//'`
   - docker stop webdriver
+  - echo Building for Quamotion v$quamotion_version
   
   - docker build -t quamotion/gitlab-runner:$quamotion_version gitlab-runner
   - docker build -t quamotion/ubuntu:$quamotion_version ubuntu
