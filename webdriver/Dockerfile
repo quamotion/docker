@@ -10,9 +10,9 @@ RUN echo "deb http://ppa.launchpad.net/quamotion/ppa/ubuntu xenial main" > /etc/
 # Delete all the apt list files since they're big and get stale quickly
 && rm -rf /var/lib/apt/lists/*
 
-RUN wget -nv -nc http://cdn.quamotion.mobi/download/quamotion-webdriver.0.83.17.ubuntu.16.04-x64.tar.gz \
-&& tar -xvzf quamotion-webdriver.0.83.17.ubuntu.16.04-x64.tar.gz \
-&& rm quamotion-webdriver.0.83.17.ubuntu.16.04-x64.tar.gz
+RUN wget -nv -nc http://cdn.quamotion.mobi/download/quamotion-webdriver.0.84.4.ubuntu.16.04-x64.tar.gz \
+&& tar -xvzf quamotion-webdriver.0.84.4.ubuntu.16.04-x64.tar.gz \
+&& rm quamotion-webdriver.0.84.4.ubuntu.16.04-x64.tar.gz
 
 RUN mkdir /var/lib/quamotion \
 && mkdir /var/log/quamotion \
