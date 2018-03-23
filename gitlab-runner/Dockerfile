@@ -1,4 +1,4 @@
-FROM gitlab/gitlab-runner:ubuntu-v10.1.0
+FROM gitlab/gitlab-runner:ubuntu-v10.6.0
 
 # Install Python
 RUN apt-get update \
@@ -18,7 +18,7 @@ RUN apt-get update \
 && apt-get install -y apt-transport-https \
 && apt-get update \
 && apt-get install -y powershell \
-&& pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion 0.82.0 -Force' \
+&& pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion 0.84.115 -Force' \
 && pwsh -command 'Install-Module -Name Pester -Force' \
 
 # Utilities we use
