@@ -1,4 +1,5 @@
 FROM buildpack-deps:xenial-scm
+ENV WEBDRIVER_VERSION 0.88.4
 
 # Install Python
 RUN apt-get update \
@@ -13,7 +14,7 @@ RUN apt-get update \
 && apt-get install -y apt-transport-https \
 && apt-get update \
 && apt-get install -y powershell \
-&& pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion 0.84.115 -Force' \
+&& pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion $WEBDRIVER_VERSION -Force' \
 && pwsh -command 'Install-Module -Name Pester -Force' \
 
 # Install Maven

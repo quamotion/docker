@@ -1,6 +1,7 @@
 FROM ubuntu:xenial
 
 WORKDIR /app
+ENV WEBDRIVER_VERSION 0.88.4
 
 RUN echo "deb http://ppa.launchpad.net/quamotion/ppa/ubuntu xenial main" > /etc/apt/sources.list.d/quamotion.list \
 && apt-key adv --keyserver keyserver.ubuntu.com --recv E25E7A74 \
@@ -10,9 +11,9 @@ RUN echo "deb http://ppa.launchpad.net/quamotion/ppa/ubuntu xenial main" > /etc/
 # Delete all the apt list files since they're big and get stale quickly
 && rm -rf /var/lib/apt/lists/*
 
-RUN wget -nv -nc http://cdn.quamotion.mobi/download/quamotion-webdriver.0.84.115.ubuntu.16.04-x64.tar.gz \
-&& tar -xvzf quamotion-webdriver.0.84.115.ubuntu.16.04-x64.tar.gz \
-&& rm quamotion-webdriver.0.84.115.ubuntu.16.04-x64.tar.gz
+RUN wget -nv -nc http://cdn.quamotion.mobi/download/quamotion-webdriver.$WEBDRIVER_VERSION.ubuntu.16.04-x64.tar.gz \
+&& tar -xvzf quamotion-webdriver.$WEBDRIVER_VERSION.ubuntu.16.04-x64.tar.gz \
+&& rm quamotion-webdriver.$WEBDRIVER_VERSION.ubuntu.16.04-x64.tar.gz
 
 RUN mkdir /var/lib/quamotion \
 && mkdir /var/log/quamotion \
