@@ -14,5 +14,20 @@ the Quamotion WebDriver docker image like this:
 docker run --privileged --net host -v /dev/bus/usb:/dev/bus/usb --name quamotion-webdriver quamotion/webdriver
 ```
 
+The container needs to run with elevated privileges in order to be able to access your iOS and Android devices over USB.
+
 The [quamotion/ubuntu](https://hub.docker.com/r/quamotion/ubuntu/) image is preconfigured with the tools you need to
 start writing scripts with Quamotion.
+
+## Configuring the Docker Container
+
+You can mount volumes in the Docker container to make sure your settings persist after destroying and re-creating the container.
+
+Within the container, the log files are stored at `/var/log/quamotion` and settings (such as the applications you want to test,
+your license key, and the iOS developer disk images) at `/var/lib/quamotion`. 
+
+You can use this command to map these folders to the same path on your host:
+
+```
+docker run --privileged --net host -v /dev/bus/usb:/dev/bus/usb -v /var/log/quamotion:/var/log/quamotion -v /var/lib/quamotion:/var/lib/quamotion --name quamotion-webdriver quamotion/webdriver
+```
