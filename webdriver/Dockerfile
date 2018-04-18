@@ -6,7 +6,7 @@ ENV WEBDRIVER_VERSION 0.88.4
 RUN echo "deb http://ppa.launchpad.net/quamotion/ppa/ubuntu xenial main" > /etc/apt/sources.list.d/quamotion.list \
 && apt-key adv --keyserver keyserver.ubuntu.com --recv E25E7A74 \
 && apt-get update \
-&& apt-get install -y libunwind8 libicu55 libc++-dev zlib1g wget libcurl3 libgdiplus libc6-dev \
+&& apt-get install -y libunwind8 libicu55 libc++-dev zlib1g wget libcurl3 libgdiplus libc6-dev libusb-1.0-0 \
 
 # Delete all the apt list files since they're big and get stale quickly
 && rm -rf /var/lib/apt/lists/*
