@@ -4,7 +4,7 @@ ENV WEBDRIVER_VERSION 0.88.4
 # Install Python
 RUN apt-get update \
 && apt-get install -y python3 python3-pip \
-&& pip3 install --upgrade pip \
+&& pip3 install --upgrade pip=9.0.3 \
 && pip3 install selenium quamotion \
 
 # Install PowerShell
