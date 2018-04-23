@@ -1,7 +1,7 @@
 FROM ubuntu:xenial
 
 WORKDIR /app
-ENV WEBDRIVER_VERSION 0.88.4
+ENV WEBDRIVER_VERSION 0.89.6
 
 RUN echo "deb http://ppa.launchpad.net/quamotion/ppa/ubuntu xenial main" > /etc/apt/sources.list.d/quamotion.list \
 && apt-key adv --keyserver keyserver.ubuntu.com --recv E25E7A74 \
