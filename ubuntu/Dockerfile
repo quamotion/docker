@@ -1,5 +1,5 @@
 FROM buildpack-deps:xenial-scm
-ENV WEBDRIVER_VERSION 0.89.6
+ENV WEBDRIVER_VERSION 0.90.19
 
 # Install Python
 RUN apt-get update \
