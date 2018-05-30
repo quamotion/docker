@@ -6,7 +6,7 @@ services:
 script:
   - docker build -t quamotion/ubuntu:$TRAVIS_BUILD_NUMBER ubuntu
   - docker build -t quamotion/webdriver:$TRAVIS_BUILD_NUMBER webdriver
-  - docker build -t quamotion/webdriver:$TRAVIS_BUILD_NUMBER powershell
+  - docker build -t quamotion/powershell:$TRAVIS_BUILD_NUMBER powershell
   
   - echo Starting webdriver to determine the version
   - docker run --net host -d --name webdriver quamotion/webdriver:$TRAVIS_BUILD_NUMBER
