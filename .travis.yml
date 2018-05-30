@@ -6,6 +6,7 @@ services:
 script:
   - docker build -t quamotion/ubuntu:$TRAVIS_BUILD_NUMBER ubuntu
   - docker build -t quamotion/webdriver:$TRAVIS_BUILD_NUMBER webdriver
+  - docker build -t quamotion/webdriver:$TRAVIS_BUILD_NUMBER powershell
   
   - echo Starting webdriver to determine the version
   - docker run --net host -d --name webdriver quamotion/webdriver:$TRAVIS_BUILD_NUMBER
@@ -16,15 +17,19 @@ script:
   
   - docker build -t quamotion/ubuntu:$quamotion_version ubuntu
   - docker build -t quamotion/webdriver:$quamotion_version webdriver
+  - docker build -t quamotion/powershell:$quamotion_version powershell
   
   - docker build -t quamotion/ubuntu:latest ubuntu
   - docker build -t quamotion/webdriver:latest webdriver
+  - docker build -t quamotion/powershell:latest powershell
 
 after_success:
   - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
   
   - docker push quamotion/ubuntu:$quamotion_version
   - docker push quamotion/webdriver:$quamotion_version
+  - docker push quamotion/powershell:$quamotion_version
   
   - docker push quamotion/ubuntu:latest
   - docker push quamotion/webdriver:latest
+  - docker push quamotion/powershell:latest
