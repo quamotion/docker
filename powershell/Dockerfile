@@ -1,5 +1,5 @@
 FROM ubuntu:xenial
-ENV WEBDRIVER_VERSION 0.91.46
+ENV WEBDRIVER_VERSION 0.91.50
 
 # Install PowerShell
 && apt-get install -y curl \
