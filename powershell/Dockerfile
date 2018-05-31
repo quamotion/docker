@@ -12,5 +12,8 @@ RUN apt-get update \
 && pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion $WEBDRIVER_VERSION -Force' \
 && pwsh -command 'Install-Module -Name Pester -Force' \
 
+# Install zip and unzip
+&& apt-get install -y zip unzip \
+
 # Delete all the apt list files since they're big and get stale quickly
 && rm -rf /var/lib/apt/lists/*

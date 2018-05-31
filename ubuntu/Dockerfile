@@ -23,8 +23,5 @@ RUN apt-get update \
 # Install zip and unzip
 && apt-get install -y zip unzip \
 
-# Install ffmpeg, which can be used to create video recordings \
-&& apt-get install -y ffmpeg \
-
 # Delete all the apt list files since they're big and get stale quickly
 && rm -rf /var/lib/apt/lists/*
