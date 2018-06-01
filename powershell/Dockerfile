@@ -1,5 +1,5 @@
 FROM ubuntu:xenial
-ENV WEBDRIVER_VERSION 0.91.60
+ENV WEBDRIVER_VERSION 0.91.65
 
 # Install PowerShell
 RUN apt-get update \
