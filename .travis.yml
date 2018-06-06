@@ -15,7 +15,6 @@ before_install:
 script:
   - echo Packaging Quamotion WebDriver $WEBDRIVER_VERSION
   - docker --version
-  - docker build --build-arg WEBDRIVER_VERSION=$WEBDRIVER_VERSION -t quamotion/ubuntu:$TRAVIS_BUILD_NUMBER ubuntu
   - docker build --build-arg WEBDRIVER_VERSION=$WEBDRIVER_VERSION -t quamotion/webdriver:$TRAVIS_BUILD_NUMBER webdriver
   - docker build --build-arg WEBDRIVER_VERSION=$WEBDRIVER_VERSION -t quamotion/powershell:$TRAVIS_BUILD_NUMBER powershell
   
@@ -26,21 +25,17 @@ script:
   - docker stop webdriver
   - echo Building for Quamotion v$quamotion_version
   
-  - docker tag quamotion/ubuntu:$TRAVIS_BUILD_NUMBER quamotion/ubuntu:$quamotion_version
   - docker tag quamotion/webdriver:$TRAVIS_BUILD_NUMBER quamotion/webdriver:$quamotion_version
   - docker tag quamotion/powershell:$TRAVIS_BUILD_NUMBER quamotion/powershell:$quamotion_version
   
-  - docker tag quamotion/ubuntu:$TRAVIS_BUILD_NUMBER quamotion/ubuntu:latest
   - docker tag quamotion/webdriver:$TRAVIS_BUILD_NUMBER quamotion/webdriver:latest
   - docker tag quamotion/powershell:$TRAVIS_BUILD_NUMBER quamotion/powershell:latest
 
 after_success:
   - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
   
-  - docker push quamotion/ubuntu:$quamotion_version
   - docker push quamotion/webdriver:$quamotion_version
   - docker push quamotion/powershell:$quamotion_version
   
-  - docker push quamotion/ubuntu:latest
   - docker push quamotion/webdriver:latest
   - docker push quamotion/powershell:latest
