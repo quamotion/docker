@@ -26,13 +26,13 @@ script:
   - docker stop webdriver
   - echo Building for Quamotion v$quamotion_version
   
-  - docker build -t quamotion/ubuntu:$quamotion_version ubuntu
-  - docker build -t quamotion/webdriver:$quamotion_version webdriver
-  - docker build -t quamotion/powershell:$quamotion_version powershell
+  - docker tag quamotion/ubuntu:$TRAVIS_BUILD_NUMBER quamotion/ubuntu:$quamotion_version
+  - docker tag quamotion/webdriver:$TRAVIS_BUILD_NUMBER quamotion/webdriver:$quamotion_version
+  - docker tag quamotion/powershell:$TRAVIS_BUILD_NUMBER quamotion/powershell:$quamotion_version
   
-  - docker build -t quamotion/ubuntu:latest ubuntu
-  - docker build -t quamotion/webdriver:latest webdriver
-  - docker build -t quamotion/powershell:latest powershell
+  - docker tag quamotion/ubuntu:$TRAVIS_BUILD_NUMBER quamotion/ubuntu:latest
+  - docker tag quamotion/webdriver:$TRAVIS_BUILD_NUMBER quamotion/webdriver:latest
+  - docker tag quamotion/powershell:$TRAVIS_BUILD_NUMBER quamotion/powershell:latest
 
 after_success:
   - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
