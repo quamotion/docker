@@ -3,10 +3,14 @@ sudo: required
 services:
   - docker
 
+env:
+  - WEBDRIVER_VERSION=0.91.75
+
 script:
-  - docker build -t quamotion/ubuntu:$TRAVIS_BUILD_NUMBER ubuntu
-  - docker build -t quamotion/webdriver:$TRAVIS_BUILD_NUMBER webdriver
-  - docker build -t quamotion/powershell:$TRAVIS_BUILD_NUMBER powershell
+  - echo Packaging Quamotion WebDriver $WEBDRIVER_VERSION
+  - docker build --build-arg WEBDRIVER_VERSION=$WEBDRIVER_VERSION -t quamotion/ubuntu:$TRAVIS_BUILD_NUMBER ubuntu
+  - docker build --build-arg WEBDRIVER_VERSION=$WEBDRIVER_VERSION -t quamotion/webdriver:$TRAVIS_BUILD_NUMBER webdriver
+  - docker build --build-arg WEBDRIVER_VERSION=$WEBDRIVER_VERSION -t quamotion/powershell:$TRAVIS_BUILD_NUMBER powershell
   
   - echo Starting webdriver to determine the version
   - docker run --net host -d --name webdriver quamotion/webdriver:$TRAVIS_BUILD_NUMBER
