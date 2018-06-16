@@ -3,7 +3,7 @@ ARG WEBDRIVER_VERSION
 FROM quamotion/webdriver:$WEBDRIVER_VERSION
 
 RUN apt-get update \
-&& apt-get install -y linux-tools-`uname -r` software-properties-common \
+&& apt-get install -y linux-tools-`uname -r` software-properties-common curl \
 && curl -OL http://aka.ms/perfcollect \
 && chmod +x perfcollect \
 && ./perfcollect install \
