@@ -8,6 +8,6 @@ RUN apt-get update \
 && apt-get update \
 && apt-get install -y lttng-tools lttng-modules-dkms liblttng-ust-dev \
 && curl -OL http://aka.ms/perfcollect \
-&& echo 'Y' | ./perfcollect install \
+&& chmod +x perfcollect \
 # Delete all the apt list files since they're big and get stale quickly
 && rm -rf /var/lib/apt/lists/*
