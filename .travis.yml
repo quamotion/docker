@@ -20,7 +20,7 @@ script:
   - docker build --build-arg WEBDRIVER_VERSION=$WEBDRIVER_VERSION -t quamotion/powershell:$WEBDRIVER_VERSION powershell
   
   - echo Starting webdriver to determine the version
-  - docker run --net host -d --name webdriver quamotion/webdriver:$TRAVIS_BUILD_NUMBER
+  - docker run --net host -d --name webdriver quamotion/webdriver:$WEBDRIVER_VERSION
   - while ! nc -z localhost 17894; do sleep 1; echo -n '.'; done
   - quamotion_version=`curl localhost:17894/wd/hub/status | jq .value.build.fileVersion -r | sed 's/\.[^.]*$//'`
   - docker stop webdriver
