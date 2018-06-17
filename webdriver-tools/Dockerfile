@@ -3,7 +3,7 @@ ARG WEBDRIVER_VERSION
 FROM quamotion/webdriver:$WEBDRIVER_VERSION
 
 RUN apt-get update \
-&& apt-get install -y linux-tools-`uname -r` software-properties-common curl \
+&& apt-get install -y linux-tools-`uname -r` software-properties-common curl zip unzip \
 && apt-add-repository -y ppa:lttng/stable-2.10 \
 && apt-get update \
 && apt-get install -y lttng-tools lttng-modules-dkms liblttng-ust-dev \
