@@ -4,7 +4,7 @@ services:
   - docker
 
 env:
-  - WEBDRIVER_VERSION=0.103.10
+  - WEBDRIVER_VERSION=0.103.12
 
 before_install:
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -20,6 +20,8 @@ script:
   - docker build --build-arg WEBDRIVER_VERSION=$WEBDRIVER_VERSION -t quamotion/webdriver:$WEBDRIVER_VERSION-tools webdriver-tools
   - docker build --build-arg WEBDRIVER_VERSION=$WEBDRIVER_VERSION -t quamotion/powershell:$WEBDRIVER_VERSION powershell
   - docker build --build-arg WEBDRIVER_VERSION=$WEBDRIVER_VERSION -t quamotion/powershell-bionic:$WEBDRIVER_VERSION powershell-bionic
+  - docker build --build-arg WEBDRIVER_VERSION=$WEBDRIVER_VERSION -t quamotion/xcuitrunner:$WEBDRIVER_VERSION xcuitrunner
+  - docker build --build-arg WEBDRIVER_VERSION=$WEBDRIVER_VERSION -t quamotion/xcuitrunner-bionic:$WEBDRIVER_VERSION xcuitrunner-bionic
   
   - echo Starting webdriver to determine the version
   - docker run --net host -d --name webdriver quamotion/webdriver:$WEBDRIVER_VERSION
@@ -30,8 +32,10 @@ script:
   
   - docker tag quamotion/webdriver:$WEBDRIVER_VERSION quamotion/webdriver:latest
   - docker tag quamotion/powershell:$WEBDRIVER_VERSION quamotion/powershell:latest
+  - docker tag quamotion/xcuitrunner:$WEBDRIVER_VERSION quamotion/xcuitrunner:latest
   - docker tag quamotion/webdriver-bionic:$WEBDRIVER_VERSION quamotion/webdriver:latest-bionic
   - docker tag quamotion/powershell-bionic:$WEBDRIVER_VERSION quamotion/powershell:latest-bionic
+  - docker tag quamotion/xcuitrunner-bionic:$WEBDRIVER_VERSION quamotion/xcuitrunner:latest-bionic
 
 after_success:
   - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
@@ -41,8 +45,12 @@ after_success:
   - docker push quamotion/webdriver:$WEBDRIVER_VERSION-tools
   - docker push quamotion/powershell:$WEBDRIVER_VERSION
   - docker push quamotion/powershell:$WEBDRIVER_VERSION-bionic
+  - docker push quamotion/xcuitrunner:$WEBDRIVER_VERSION
+  - docker push quamotion/xcuitrunner:$WEBDRIVER_VERSION-bionic
   
   - docker push quamotion/webdriver:latest
   - docker push quamotion/powershell:latest
+  - docker push quamotion/xcuitrunner:latest
   - docker push quamotion/webdriver:latest-bionic
   - docker push quamotion/powershell:latest-bionic
+  - docker push quamotion/xcuitrunner:latest-bionic
