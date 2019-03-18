@@ -1,0 +1,18 @@
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+- name: build
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: quamotion/powershell
+    tags: arm64
+    dockerfile: powershell-arm64/Dockerfile
