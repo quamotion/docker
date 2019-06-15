@@ -10,7 +10,7 @@ RUN apt-get update \
 && apt-get update \
 # For now, install libgdiplus 4.2-2 (from the Ubuntu sources), becaues the libgdiplus version in the Quamotion
 # PPA has incorrect dependencies for bionic
-&& apt-get install -y libunwind8 libicu60 libc++-dev zlib1g wget libcurl3 libgdiplus=4.2-2 libc6-dev libusb-1.0-0 libusbmuxd-tools libplist-dev libusbmuxd-dev libimobiledevice-dev usbmuxd \
+&& apt-get install -y libunwind8 libicu60 libc++-dev zlib1g wget libcurl3 libgdiplus=4.2-2 libc6-dev libusb-1.0-0 libusbmuxd-tools libplist-dev libusbmuxd-dev libimobiledevice-dev usbmuxd liblz4-dev \
 
 # Delete all the apt list files since they're big and get stale quickly
 && rm -rf /var/lib/apt/lists/*
