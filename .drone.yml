@@ -3,10 +3,12 @@ name: default
 
 platform:
   os: linux
+
+matrix:
   arch: arm64
 
 steps:
-- name: build
+- name: powershell
   image: plugins/docker
   settings:
     username:
@@ -15,4 +17,26 @@ steps:
       from_secret: docker_password
     repo: quamotion/powershell
     tags: arm64
-    dockerfile: powershell-arm64/Dockerfile
+    dockerfile: powershell/Dockerfile
+
+- name: xcuitrunner
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: quamotion/xcuitrunner
+    tags: arm64
+    dockerfile: xcuitrunner/Dockerfile
+
+- name: webdriver
+  image: plugins/docker
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    repo: quamotion/webdriver
+    tags: arm64
+    dockerfile: webdriver/Dockerfile

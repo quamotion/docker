@@ -1,15 +1,20 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 
 ARG WEBDRIVER_VERSION
+ARG ARCH=x64
 
 # Install PowerShell
 RUN apt-get update \
-&& apt-get install -y curl \
-&& curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-&& curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | tee /etc/apt/sources.list.d/microsoft.list \
-&& apt-get install -y apt-transport-https \
-&& apt-get update \
-&& apt-get install -y powershell \
+&& apt-get install -y wget libicu60 \
+
+# Install Powershell Core
+&& wget -nv -nc -O powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v6.2.3/powershell-6.2.3-linux-$ARCH.tar.gz \
+&& mkdir -p /usr/local/powershell \
+&& tar zxf powershell.tar.gz -C /usr/local/powershell \
+&& ln -s /usr/local/powershell/pwsh /usr/local/bin/pwsh \
+&& rm powershell.tar.gz \
+
+## Install PowerShell modules
 && pwsh -command 'Install-Module -Name Quamotion.PowerShell -RequiredVersion $WEBDRIVER_VERSION -Force' \
 && pwsh -command 'Install-Module -Name Pester -Force' \
 
