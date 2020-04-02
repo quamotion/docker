@@ -4,7 +4,7 @@ services:
   - docker
 
 env:
-  - WEBDRIVER_VERSION=0.132.77
+  - WEBDRIVER_VERSION=0.138.23
 
 before_install:
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
