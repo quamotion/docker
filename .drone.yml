@@ -1,25 +1,13 @@
 kind: pipeline
-name: default
+name: linux-amd64
+type: docker
 
 platform:
   os: linux
-
-matrix:
-  arch: arm64
+  arch: amd64
 
 steps:
-- name: powershell
-  image: plugins/docker
-  settings:
-    username:
-      from_secret: docker_username
-    password:
-      from_secret: docker_password
-    repo: quamotion/powershell
-    tags: arm64
-    dockerfile: powershell/Dockerfile
-
-- name: xcuitrunner
+- name: build
   image: plugins/docker
   settings:
     username:
@@ -27,16 +15,55 @@ steps:
     password:
       from_secret: docker_password
     repo: quamotion/xcuitrunner
-    tags: arm64
-    dockerfile: xcuitrunner/Dockerfile
+    tags: ${DRONE_COMMIT}-linux-amd64
 
-- name: webdriver
+---
+
+kind: pipeline
+name: linux-arm64
+type: docker
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+- name: build
   image: plugins/docker
   settings:
     username:
       from_secret: docker_username
     password:
       from_secret: docker_password
-    repo: quamotion/webdriver
-    tags: arm64
-    dockerfile: webdriver/Dockerfile
+    repo: quamotion/xcuitrunner
+    tags: ${DRONE_COMMIT}-linux-arm64
+
+---
+
+kind: pipeline
+type: docker
+name: manifest
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: get_version
+  image: quamotion/xcuitrunner:${DRONE_COMMIT}-${DRONE_STAGE_OS}-${DRONE_STAGE_ARCH}
+  commands:
+    - /usr/share/xcuitrunner/xcuitrunner --version | awk '{split($0,a,"+"); print a[1]}' | tee .tags
+    - cat .tags
+
+- name: manifest
+  image: plugins/manifest
+  settings:
+    username:
+      from_secret: docker_username
+    password:
+      from_secret: docker_password
+    spec: manifest.tmpl
+
+depends_on:
+- linux-amd64
+- linux-arm64
